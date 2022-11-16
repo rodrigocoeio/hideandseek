@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a id="logo" class="navbar-brand">
-                <img src="images/flashlearning.png" width="36" />
+                <img src="images/hideandseek-logo.png" width="36" />
             </a>
 
             <!-- Navbar Toogler -->
@@ -11,7 +11,7 @@
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <a class="navbar-brand" href="#">
-                    <img src="images/flashlearning.png" width="36" />
+                    <img src="images/hideandseek-logo.png" width="36" />
                 </a>
             </button>
 
@@ -58,34 +58,6 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Audio Button -->
-                    <li class="nav-item">
-                        <button id="audioButton" title="Press A S or Space" :class="['btn', game.audio ? 'btn-primary' : 'btn-secondary']" :disabled="!card.audio" @click="playAudio">
-                            <img src="/images/audio.png" height="36">
-                        </button>
-                    </li>
-
-                    <!-- Image Button -->
-                    <li class="nav-item">
-                        <button id="imageButton" title="Press I or P" :class="['btn', game.image ? 'btn-primary' : 'btn-secondary']" :disabled="!card.image" @click="toggleImage">
-                            <img src="/images/picture.png" height="36">
-                        </button>
-                    </li>
-
-                    <!-- Name Button -->
-                    <li class="nav-item">
-                        <button id="nameButton" title="Press N" :class="['btn', game.name ? 'btn-primary' : 'btn-secondary']" :disabled="!card.name" @click="toggleName">
-                            <img src="/images/text.png" height="36">
-                        </button>
-                    </li>
-
-                    <!-- Translation Button -->
-                    <li class="nav-item">
-                        <button id="translationButton" title="Press T" :class="['btn', game.translation ? 'btn-primary' : 'btn-secondary']" :disabled="!card.translation" @click="toggleTranslation">
-                            <img src="/images/translation.png" height="36">
-                        </button>
-                    </li>
-
                     <!-- Quit Game -->
                     <li class="nav-item">
                         <button class="btn btn-danger" @click="quitGame" style="font-size:24px">

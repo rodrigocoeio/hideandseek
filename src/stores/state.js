@@ -5,7 +5,6 @@ export default {
     started: false,
     category: "all",
     cardSorting: "shuffle",
-    audio: false,
     deck: [],
     deck_index: 0
   },
