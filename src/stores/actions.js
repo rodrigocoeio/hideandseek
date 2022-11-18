@@ -1,131 +1,102 @@
 export default {
   startGame() {
-    console.log("Game Started");
-
-    if (!this.currentCategory) {
+    if (
+      !this.currentCategory ||
+      !this.currentCategory.cards ||
+      this.currentCategory.cards.length === 0
+    ) {
+      alert("Choose a Category or Subcategory");
       $("#categoryField").trigger("focus");
       return false;
     }
 
+    console.log("Game Started");
+
     this.game.started = true;
-    this.game.cover = this.currentCategory.cover;
     this.game.guessed = false;
-    this.game.givedUp = false;
-    this.game.deck_index = 0;
-    this.game.deck = this.getNewDeck();
-    this.game.squares = this.getCardSquares();
+    this.game.object = false;
+    this.game.where = false;
+
+    this.cards.forEach((card) => {
+      card.tried = false;
+    });
   },
 
-  getNewDeck() {
-    const cards = [];
+  quitGame() {
+    if (this.game.audio) this.stopAudio();
 
-    for (let i = 0; i < this.cardsNumber; i++) {
-      cards.push(i);
+    this.game.started = false;
+    this.game.category = false;
+  },
+
+  selectObject(object) {
+    this.game.object = object;
+    this.hideObject();
+  },
+
+  hideObject() {
+    const cards = shuffleArray([...this.cards]);
+    const card = cards.pop();
+    this.game.where = card.name;
+  },
+
+  guessWhere(where) {
+    if (where === this.game.where) {
+      this.game.guessed = true;
+      playAudio("right", "mpeg");
+      return true;
+    } else {
+      playAudio("wrong", "mpeg");
+      return false;
     }
-
-    return this.game.cardSorting==="shuffle" ? shuffleArray(cards) : sortByKey(cards, "name");
-  },
-
-  getCardSquares() {
-    const squares = [];
-    for (let i = 0; i < this.squaresNumber; i++) {
-      squares.push(i + 1);
-    }
-
-    return shuffleArray(squares);
-  },
-
-  nextCard() {    
-    if(this.game.cover)
-      return this.game.cover = false;
-
-    if (this.game.deck_index < this.game.deck.length - 1)
-      this.game.deck_index++;
-
-    this.game.guessed = false;
-    this.game.givedUp = false;
-    this.game.squares = this.getCardSquares();
-  },
-
-  previousCard() {
-    if (this.game.deck_index > 0) this.game.deck_index--;
-
-    this.game.guessed = false;
-    this.game.givedUp = false;
-    this.game.squares = this.getCardSquares();
-  },
-
-  openSquare(number) {
-    $(".CardSquare[number=" + number + "]").css("background-image", "none");
-
-    this.game.squares = this.game.squares.filter(
-      (squareNumber) => squareNumber != number
-    );
-
-    $("#guessWhat").trigger("blur");
-  },
-
-  openRandomSquare() {
-    const cardNumber = this.game.squares.pop();
-
-    if (cardNumber) this.openSquare(cardNumber);
-    else this.giveUp();
-  },
-
-  openAllSquares() {
-    $(".CardSquare").css("background-image", "none");
-    this.game.squares = [];
   },
 
   playCardAudio(card) {
     this.stopAudio();
 
+    const store = this;
     card = card ? card : this.card;
 
-    if (!card) return false;
+    const audioFile = "/cards/" + card.parent + "/" + card.audio;
 
     if (card.audio) {
-      const cardAudioFile = "/cards/" + card.category + "/" + card.audio;
-      this.game.audio = new Audio(cardAudioFile);
-      this.game.audio.play();
+      this.game.audio = playAudio(audioFile);
+      this.game.audio.onended = function () {
+        store.game.audio = false;
+      };
     }
   },
 
   stopAudio() {
     if (this.game.audio) {
       this.game.audio.pause();
+      this.game.audio = false;
     }
   },
 
-  giveUp() {
-    this.openAllSquares();
-    this.playCardAudio();
-    this.game.givedUp = true;
+  selectCategory(category) {
+    this.game.category = category;
   },
 
-  guessWhat(guessTry) {
-    $("#guessWhat").trigger("blur");
+  previousCard() {
+    if (this.game.audio) this.stopAudio();
 
-    if (guessTry == "") return false;
-
-    console.log("Guess What: " + guessTry);
-
-    if (this.card.name.toLowerCase() == guessTry.toLowerCase()) {
-      const store = this;
-      this.openAllSquares();
-      this.game.guessed = true;
-      const audio = playAudio("right", "mpeg");
-      audio.onended = function () {
-        store.playCardAudio();
-      };
-    } else {
-      playAudio("wrong", "mpeg");
+    if (this.game.cardIndex > 0) {
+      this.game.image = false;
+      this.game.name = false;
+      this.game.translation = false;
+      this.game.cardIndex--;
     }
   },
 
-  quitGame() {
-    console.log("Quit Game");
-    this.game.started = false;
-    this.game.category = false;
+  nextCard() {
+    if (this.game.audio) this.stopAudio();
+
+    if (this.game.cardIndex + 1 < this.cardsNumber) {
+      this.game.image = false;
+      this.game.name = false;
+      this.game.translation = false;
+      this.game.cardIndex++;
+    }
   },
 };

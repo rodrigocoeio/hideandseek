@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const { exit } = require("process");
+const { format } = require("path");
 const silenceMode = true;
 
 const getExtensionFromFileName = function (fileName) {
@@ -18,6 +19,9 @@ const capitalizeFirstLetter = function (string) {
 };
 
 const formatCardName = function (cardName) {
+  const fileNameSplited = cardName.split("-");
+  cardName = fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
+
   cardName = cardName.trim();
   cardName = cardName.replace(/(\r\n|\n|\r)/gm, "");
 
@@ -74,6 +78,25 @@ const readCategories = async function (folder, callback) {
 
   const categoriesCards = readContents(contents);
   callback(categoriesCards.categories);
+};
+
+const readObjects = async function (folder, callback) {
+  const contents = await readFolder(folder);
+  const objects = [];
+
+  contents.forEach(content => {
+    const object = getObject(content);
+    objects.push(object);
+  })
+
+  callback(objects);
+};
+
+const getObject = (content) => {
+  return {
+    name: formatCardName(content.name),
+    image: content.fileName
+  }
 };
 
 const readContents = (contents, parent) => {
@@ -135,7 +158,10 @@ const getCategory = (content, parent) => {
 const getCard = (content, parent) => {
   if (content.extension == "jpg" || content.extension == "png") {
     const cardName = formatCardName(content.name);
-    const cardType = formatCardName(parent.name).toLowerCase() == cardName.toLowerCase() ? "cover" : "card";
+    const cardType =
+      formatCardName(parent.name).toLowerCase() == cardName.toLowerCase()
+        ? "cover"
+        : "card";
     const cardImage = content.fileName;
     const cardAudio = findCardFile(content.name, parent, "mp3");
 
@@ -145,7 +171,7 @@ const getCard = (content, parent) => {
       category: parent.name,
       parent: content.parent,
       image: cardImage,
-      audio: cardAudio
+      audio: cardAudio,
     };
   }
 
@@ -164,11 +190,20 @@ const findCardFile = (name, parent, extension) => {
   return file.fileName;
 };
 
-const folder = "./public/cards";
+const categoriesFolder = "./public/cards";
 const categoriesJsonPath = "./src/stores/categories.json";
 
 console.log("reading categories and cards...");
 
-readCategories(folder, function (categories) {
+readCategories(categoriesFolder, function (categories) {
   fs.writeFileSync(categoriesJsonPath, JSON.stringify(categories));
+});
+
+const objectsFolder = "./public/objects";
+const objectsJsonPath = "./src/stores/objects.json";
+
+console.log("reading objects...");
+
+readObjects(objectsFolder, function (objects) {
+  fs.writeFileSync(objectsJsonPath, JSON.stringify(objects));
 });

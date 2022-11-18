@@ -1,63 +1,35 @@
 <template>
     <div class="CardBox">
-        <div :class="['Card', index == 0 ? 'active' : '']" v-for="card,index in cards" v-show="cardIndex === index">
-
-            <img src="/images/guesswhat.jpg" class="GuessWhat" v-if="!game.image && !game.name && !game.translation"
-                @click="playAudio">
-
-            <div>
-                <h1 v-show="game.name">{{ card.name }}</h1>
-                <h2 class="Translation" v-show="game.translation">{{ card.translation }}</h2>
-            </div>
-
-            <img :src="image" v-if="card.image" v-show="game.image" @click="playAudio" class="CardImage">
+        <div class="Card">
+            <pick-object v-if="!object"></pick-object>
+            <guess-where v-if="object && !guessed"></guess-where>
+            <contratulations v-if="object && guessed"></contratulations>
         </div>
     </div>
 </template>
 
 <script>
 import store from "$/store.js";
+import PickObject from "./PickObject.vue";
+import GuessWhere from "./GuessWhere.vue";
+import Contratulations from "./Contratulations.vue";
 
 export default {
     computed: {
-        game() {
-            return store.game;
+        object() {
+            return store.game.object;
         },
 
-        currentCategory() {
-            return store.currentCategory;
-        },
-
-        card() {
-            return store.card;
-        },
-
-        image() {
-            return "/cards/" + this.card.category + "/" + this.card.image;
-        },
-
-        cards() {
-            return store.currentCategory ? store.currentCategory.cards : [];
-        },
-
-        cardIndex() {
-            return store.game.cardIndex;
+        guessed() {
+            return store.game.guessed;
         }
     },
 
-    mounted() {
-        this.playAudio();
-    },
-
-    methods: {
-        playAudio() {
-            store.playCardAudio();
-        },
-
-        quitGame() {
-            return store.quitGame();
-        }
-    },
+    components: {
+        PickObject,
+        GuessWhere,
+        Contratulations
+    }
 }
 </script>
 

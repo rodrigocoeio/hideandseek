@@ -3,28 +3,22 @@
 
     <br>
 
-    <cover v-if="cover"></cover>
-    <card v-if="!cover"></card>
+    <card></card>
 </template>
 
 <script>
 import store from "$/store.js";
 
 import Controls from "./Controls.vue";
-import Card from "./Card.vue";
-import Cover from "./Cover.vue";
+import Card from "./Card.vue"
+
+window.store = store;
+
 
 export default {
-    computed: {
-        cover() {
-            return store.game.cover;
-        }
-    },
-
     components: {
         Controls,
-        Card,
-        Cover
+        Card
     }
 }
 </script>

@@ -3,6 +3,10 @@ export default {
     return this.game.category;
   },
 
+  categoryName() {
+    return this.currentCategory ? this.currentCategory.name : "";
+  },
+
   cards() {
     return this.currentCategory ? this.currentCategory.cards : [];
   },
