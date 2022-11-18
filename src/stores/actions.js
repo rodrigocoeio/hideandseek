@@ -43,10 +43,10 @@ export default {
   guessWhere(where) {
     if (where === this.game.where) {
       this.game.guessed = true;
-      playAudio("right", "mpeg");
+      if (this.configs.sound) playAudio("right", "mpeg");
       return true;
     } else {
-      playAudio("wrong", "mpeg");
+      if (this.configs.sound)playAudio("wrong", "mpeg");
       return false;
     }
   },

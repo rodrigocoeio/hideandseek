@@ -11,6 +11,10 @@ export default {
     deck_index: 0
   },
 
+  configs: {
+    sound: true
+  },
+  
   categories,
   objects
 };

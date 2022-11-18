@@ -55,6 +55,13 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <div class="GameSound form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="sound" id="sound"
+                                v-model="configs.sound">
+                            <label for="sound">Sound</label>
+                        </div>
+                    </li>
                     <!-- Quit Game -->
                     <li class="nav-item">
                         <button class="btn btn-danger" @click="quitGame" style="font-size:24px">
@@ -77,6 +84,12 @@
 import store from "$/store";
 
 export default {
+    data() {
+        return {
+            configs: store.configs
+        }
+    },
+
     computed: {
         game() {
             return store.game;
@@ -100,6 +113,10 @@ export default {
 
         cardsNumber() {
             return store.cardsNumber;
+        },
+
+        configs() {
+            return store.configs;
         }
     },
 
@@ -173,5 +190,10 @@ button {
 
 .nav-item {
     margin-left: 10px;
+}
+
+.GameSound {
+    font-size: 24px;
+    margin-top: 6px;
 }
 </style>

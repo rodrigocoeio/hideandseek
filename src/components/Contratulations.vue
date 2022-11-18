@@ -3,7 +3,7 @@
         <img class="ObjectImage" :src="'/objects/' + object.image">
         <h1>Contratulations, you have founded the <span class="ObjectName">{{ object.name }}</span>!</h1>
         <h1>It was hidden <span class="WhereName">{{ where.name }}</span>!</h1>
-        <button class="NewGame btn btn-success" @click="newGame">New Game</button>
+        <button class="NewGame btn btn-success" @click="newGame">Start New Game</button>
     </div>
 </template>
 
