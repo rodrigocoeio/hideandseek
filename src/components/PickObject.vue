@@ -1,13 +1,13 @@
 <template>
     <h1>What do you wanna hide?</h1>
-    <h3>Pick an object</h3>
+    <h2>Pick an object</h2>
 
 
     <div class="ObjectsBox">
 
         <div class="Object" v-for="object in objects" @click="selectObject(object)">
             <img :src="'/objects/' + object.image">
-            <h5>{{ object.name }}</h5>
+            <h3>{{ object.name }}</h3>
         </div>
 
     </div>
@@ -51,6 +51,6 @@ export default {
 }
 
 .Object img {
-    max-height: 64px;
+    max-height: 84px;
 }
 </style>
