@@ -50,6 +50,8 @@ export default {
 
 .Place {
     cursor: pointer;
+    padding: 20px;
+    background-repeat: no-repeat;
 }
 
 .Place h1 {
@@ -67,7 +69,7 @@ export default {
 
 .Place.disabled {
     cursor: default;
-    opacity: 0.3;
+    opacity: 0.1;
 }
 
 .Object {

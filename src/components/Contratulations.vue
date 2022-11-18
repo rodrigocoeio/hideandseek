@@ -1,7 +1,8 @@
 <template>
     <div class="Congratulations" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
         <img class="ObjectImage" :src="'/objects/' + object.image">
-        <h1>Contratulations, you have founded the <span class="ObjectName">{{ object.name }}</span>!</h1>
+        <h1>Contratulations!<br>
+        You've founded the <span class="ObjectName">{{ object.name }}</span>!</h1>
         <h1>It was hidden <span class="WhereName">{{ where.name }}</span>!</h1>
         <button class="NewGame btn btn-success" @click="newGame">Start New Game</button>
     </div>
@@ -51,7 +52,7 @@ export default {
 }
 
 .ObjectImage {
-    max-height: 256px;
+    max-height: 180px;
     margin: 25px;
     -webkit-filter: drop-shadow(15px 15px 15px #666666);
     filter: drop-shadow(15px 15px 15px #666666);

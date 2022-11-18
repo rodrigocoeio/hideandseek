@@ -33,7 +33,7 @@ export default {
 <style scoped>
 .ObjectsBox {
     max-width: 250px;
-    max-height: 400px;
+    max-height: calc(100% - 100px);
     margin: auto;
     text-align: center;
     overflow: auto;
