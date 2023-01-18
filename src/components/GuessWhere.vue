@@ -1,6 +1,6 @@
 <template>
     <img class="Object" :src="'/objects/' + object.image">
-    <h1>Where is the {{ object.name }} hidden ?</h1>
+    <h1>Where is the <span class="ObjectName">{{ object.name }}</span> hidden ?</h1>
 
     <select id="guessWhere" class="form form-select" v-model="guessTry" @change="guessWhere">
         <option value="0">Guess Where?</option>
@@ -44,30 +44,8 @@ export default {
     max-height: calc(100% - 180px);
 }
 
-.Place {
-    cursor: pointer;
-    padding: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.Place h1 {
-    -webkit-text-stroke: 1px white;
-    /* width and color */
-    font-weight: bold;
-}
-
-.Place:hover h1 {
+.ObjectName {
     color: red;
-}
-
-.Place.disabled:hover h1 {
-    color: black;
-}
-
-.Place.disabled {
-    cursor: default;
-    opacity: 0.1;
 }
 
 .Object {
