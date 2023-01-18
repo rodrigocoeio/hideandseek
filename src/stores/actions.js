@@ -49,12 +49,14 @@ export default {
     if (where === this.game.where) {
       this.game.guessed = true;
       this.game.missed = false;
-      if (this.configs.sound) playAudio("right", "mpeg");
+      const number = Math.floor(Math.random() * 2);
+      if (this.configs.sound) playAudio("right" + number, "mpeg");
       return true;
     } else {
       this.game.guessed = false;
       this.game.missed = where;
-      if (this.configs.sound) playAudio("wrong", "mpeg");
+      const number = Math.floor(Math.random() * 4);
+      if (this.configs.sound) playAudio("wrong" + number, "mpeg");
       return false;
     }
   },
