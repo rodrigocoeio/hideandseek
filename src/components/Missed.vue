@@ -1,16 +1,19 @@
 <template>
-    <div class="CongratulationsBox">
-        <h1>Contratulations!
-        You've founded the <span class="ObjectName">{{ object.name }}</span>!</h1>
-        <h1>It was hidden <span class="WhereName">{{ where.name }}</span>!</h1>
-    </div>
-    
+    <div class="MissedBox">
 
-    <button class="NewGame btn btn-success" @click="newGame">Start New Game</button>
-    
-    <div class="Congratulations" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
-        <img class="ObjectImage" :src="'/objects/' + object.image">        
+        <h1>Sorry! You've missed it!<br>
+            The <span class="ObjectName">{{ object.name }}</span> is not hidden <span class="WhereName">{{
+                where.name
+            }}</span>!</h1>
+
+        <button class="TryAgain btn btn-success" @click="tryAgain">TryAgain</button>
+
+
+        <div class="Missed" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
+            <!-- <img class="ObjectImage" :src="'/objects/' + object.image"> -->
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -23,7 +26,7 @@ export default {
         },
 
         where() {
-            const where = store.game.where;
+            const where = store.game.missed;
             let card = false;
 
             store.cards.forEach(c => {
@@ -36,15 +39,20 @@ export default {
     },
 
     methods: {
-        newGame() {
-            store.startGame();
+        tryAgain() {
+            store.tryAgain();
         }
     }
 }
 </script>
 
 <style scoped>
-.Congratulations {
+.MissedBox {
+    width: 100%;
+    height: 100%;
+}
+
+.Missed {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -57,14 +65,14 @@ export default {
 }
 
 .ObjectImage {
-    max-height: 140px;
-    opacity: 0.8;
+    max-height: 180px;
     margin: 25px;
     -webkit-filter: drop-shadow(15px 15px 15px #666666);
     filter: drop-shadow(15px 15px 15px #666666);
 }
 
-.ObjectName, .WhereName {
+.ObjectName,
+.WhereName {
     color: red;
 }
 
@@ -74,7 +82,7 @@ h2 {
     font-size: 20px;
 }
 
-.NewGame {
+.TryAgain {
     font-size: 20px;
     -webkit-filter: drop-shadow(15px 15px 15px #666666);
     filter: drop-shadow(15px 15px 15px #666666);

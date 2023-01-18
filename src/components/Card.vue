@@ -2,8 +2,9 @@
     <div class="CardBox">
         <div class="Card">
             <pick-object v-if="!object"></pick-object>
-            <guess-where v-if="object && !guessed"></guess-where>
+            <guess-where v-if="object && !guessed && !missed"></guess-where>
             <contratulations v-if="object && guessed"></contratulations>
+            <missed v-if="object && missed"></missed>
         </div>
     </div>
 </template>
@@ -13,6 +14,7 @@ import store from "$/store.js";
 import PickObject from "./PickObject.vue";
 import GuessWhere from "./GuessWhere.vue";
 import Contratulations from "./Contratulations.vue";
+import Missed from "./Missed.vue";
 
 export default {
     computed: {
@@ -22,13 +24,18 @@ export default {
 
         guessed() {
             return store.game.guessed;
+        },
+
+        missed() {
+            return store.game.missed;
         }
     },
 
     components: {
         PickObject,
         GuessWhere,
-        Contratulations
+        Contratulations,
+        Missed
     }
 }
 </script>

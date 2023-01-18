@@ -8,7 +8,9 @@ export default {
     object: false,
     cardSorting: "shuffle",
     deck: [],
-    deck_index: 0
+    deck_index: 0,
+    guessed: false,
+    missed: false
   },
 
   configs: {

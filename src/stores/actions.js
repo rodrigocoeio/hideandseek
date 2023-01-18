@@ -14,6 +14,7 @@ export default {
 
     this.game.started = true;
     this.game.guessed = false;
+    this.game.missed = false;
     this.game.object = false;
     this.game.where = false;
 
@@ -40,13 +41,20 @@ export default {
     this.game.where = card.name;
   },
 
+  tryAgain() {
+    this.game.missed = false;
+  },
+
   guessWhere(where) {
     if (where === this.game.where) {
       this.game.guessed = true;
+      this.game.missed = false;
       if (this.configs.sound) playAudio("right", "mpeg");
       return true;
     } else {
-      if (this.configs.sound)playAudio("wrong", "mpeg");
+      this.game.guessed = false;
+      this.game.missed = where;
+      if (this.configs.sound) playAudio("wrong", "mpeg");
       return false;
     }
   },
@@ -76,27 +84,5 @@ export default {
 
   selectCategory(category) {
     this.game.category = category;
-  },
-
-  previousCard() {
-    if (this.game.audio) this.stopAudio();
-
-    if (this.game.cardIndex > 0) {
-      this.game.image = false;
-      this.game.name = false;
-      this.game.translation = false;
-      this.game.cardIndex--;
-    }
-  },
-
-  nextCard() {
-    if (this.game.audio) this.stopAudio();
-
-    if (this.game.cardIndex + 1 < this.cardsNumber) {
-      this.game.image = false;
-      this.game.name = false;
-      this.game.translation = false;
-      this.game.cardIndex++;
-    }
-  },
+  }
 };

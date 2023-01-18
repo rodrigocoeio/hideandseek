@@ -2,23 +2,22 @@
     <img class="Object" :src="'/objects/' + object.image">
     <h1>Where is the {{ object.name }} hidden ?</h1>
 
-    <!-- <select class="form form-select" v-model="guessTry">
+    <select id="guessWhere" class="form form-select" v-model="guessTry" @change="guessWhere">
         <option value="0">Guess Where?</option>
         <option v-for="card, index in cards" :value="card.name">{{ card.name }}</option>
-    </select> -->
-
-    <div class="GuessWhereBox">
-        <div @click="guessWhere(card)" :class="['Place', card.tried ? 'disabled' : '']" v-for="card in cards"
-            :style="'background-image: url(\'/cards/' + card.parent + '/' + card.image + '\');'">
-            <h1>{{ card.name }}</h1>
-        </div>
-    </div>
+    </select>
 </template>
 
 <script>
 import store from "$/store.js";
 
-export default {    
+export default {
+    data() {
+        return {
+            guessTry: ""
+        }
+    },
+
     computed: {
         object() {
             return store.game.object;
@@ -31,12 +30,9 @@ export default {
 
     methods: {
         guessWhere(card) {
-            if (card.tried) return false;
-
-            if (!store.guessWhere(card.name)) {
-                card.tried = true;
-            }
-
+            store.guessWhere(this.guessTry);
+            this.guessTry = "";
+            return false;
         }
     }
 }
@@ -52,10 +48,12 @@ export default {
     cursor: pointer;
     padding: 20px;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .Place h1 {
-    -webkit-text-stroke: 1px white; /* width and color */
+    -webkit-text-stroke: 1px white;
+    /* width and color */
     font-weight: bold;
 }
 
@@ -80,6 +78,6 @@ select {
     max-width: 300px;
     margin: auto;
     margin-bottom: 15px;
-    font-size: 32px;
+    font-size: 18px;
 }
 </style>
