@@ -50,13 +50,13 @@ export default {
       this.game.guessed = true;
       this.game.missed = false;
       const number = Math.floor(Math.random() * 2);
-      if (this.configs.sound) playAudio("right" + number, "mpeg");
+      if (this.configs.sound) playAudio("right" + number, "mp3");
       return true;
     } else {
       this.game.guessed = false;
       this.game.missed = where;
-      const number = Math.floor(Math.random() * 4);
-      if (this.configs.sound) playAudio("wrong" + number, "mpeg");
+      const number = Math.floor(Math.random() * 3);
+      if (this.configs.sound) playAudio("wrong" + number, "mp3");
       return false;
     }
   },
