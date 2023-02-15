@@ -6,6 +6,8 @@
         <option value="0">Guess Where?</option>
         <option v-for="card, index in cards" :value="card.name">{{ card.name }}</option>
     </select>
+
+    <button class="btn btn-primary" @click="presentPlaces()">Present Places</button>
 </template>
 
 <script>
@@ -33,6 +35,10 @@ export default {
             store.guessWhere(this.guessTry);
             this.guessTry = "";
             return false;
+        },
+
+        presentPlaces() {
+            store.game.presentPlaces = true;
         }
     }
 }

@@ -50,13 +50,13 @@ export default {
       this.game.guessed = true;
       this.game.missed = false;
       const number = Math.floor(Math.random() * 2);
-      if (this.configs.sound) playAudio("right" + number, "mp3");
+      if (this.configs.sound) playAudio("/audios/right" + number, "mp3");
       return true;
     } else {
       this.game.guessed = false;
       this.game.missed = where;
       const number = Math.floor(Math.random() * 3);
-      if (this.configs.sound) playAudio("wrong" + number, "mp3");
+      if (this.configs.sound) playAudio("/audios/wrong" + number, "mp3");
       return false;
     }
   },
@@ -68,13 +68,36 @@ export default {
     card = card ? card : this.card;
 
     const audioFile = "/cards/" + card.parent + "/" + card.audio;
-
+    
     if (card.audio) {
       this.game.audio = playAudio(audioFile);
       this.game.audio.onended = function () {
         store.game.audio = false;
       };
     }
+  },
+
+  presentPrevious() {
+    if (this.game.presentIndex > 0) {
+      this.game.presentIndex--;
+      this.playPresentCardAudio();
+    }
+  },
+
+  presentNext() {
+    const cardsNumber = this.cards.length;
+    if (this.game.presentIndex + 1 < cardsNumber) {
+      this.game.presentIndex++;
+      this.playPresentCardAudio();
+    }
+  },
+
+  playPresentCardAudio() {
+    const card = this.cards[this.game.presentIndex]
+      ? this.cards[this.game.presentIndex]
+      : false;
+
+    if (card) this.playCardAudio(card);
   },
 
   stopAudio() {
@@ -86,5 +109,5 @@ export default {
 
   selectCategory(category) {
     this.game.category = category;
-  }
+  },
 };

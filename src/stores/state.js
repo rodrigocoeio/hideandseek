@@ -9,6 +9,8 @@ export default {
     cardSorting: "shuffle",
     deck: [],
     deck_index: 0,
+    presentPlaces: false,
+    presentIndex: 0,
     guessed: false,
     missed: false
   },

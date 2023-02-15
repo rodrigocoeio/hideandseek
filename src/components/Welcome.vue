@@ -1,6 +1,6 @@
 <template>
   <main>
-    <img src="images/hideandseek-logo.png" class="Logo">
+    <img src="/images/hideandseek-logo.png" class="Logo">
 
     <br><br>
 

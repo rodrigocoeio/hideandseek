@@ -9,7 +9,7 @@
         <button class="TryAgain btn btn-success" @click="tryAgain">TryAgain</button>
 
 
-        <div class="Missed" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
+        <div @click="playCard()" class="Missed" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
             <!-- <img class="ObjectImage" :src="'/objects/' + object.image"> -->
         </div>
     </div>
@@ -41,6 +41,10 @@ export default {
     methods: {
         tryAgain() {
             store.tryAgain();
+        },
+
+        playCard() {
+            store.playCardAudio(this.where);
         }
     }
 }
@@ -59,7 +63,7 @@ export default {
     -webkit-text-stroke: 1px white;
     /* width and color */
     font-weight: bold;
-
+    cursor: pointer;
     width: 100%;
     height: 100%;
 }

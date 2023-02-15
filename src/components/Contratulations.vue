@@ -1,15 +1,15 @@
 <template>
     <div class="CongratulationsBox">
         <h1>Contratulations!
-        You've founded the <span class="ObjectName">{{ object.name }}</span>!</h1>
+            You've founded the <span class="ObjectName">{{ object.name }}</span>!</h1>
         <h1>It was hidden <span class="WhereName">{{ where.name }}</span>!</h1>
     </div>
-    
+
 
     <button class="NewGame btn btn-success" @click="newGame">Start New Game</button>
-    
-    <div class="Congratulations" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
-        <img class="ObjectImage" :src="'/objects/' + object.image">        
+
+    <div @click="playCard()" class="Congratulations" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
+        <img class="ObjectImage" :src="'/objects/' + object.image">
     </div>
 </template>
 
@@ -38,6 +38,10 @@ export default {
     methods: {
         newGame() {
             store.startGame();
+        },
+
+        playCard() {
+            store.playCardAudio(this.where);
         }
     }
 }
@@ -51,7 +55,7 @@ export default {
     -webkit-text-stroke: 1px white;
     /* width and color */
     font-weight: bold;
-
+    cursor: pointer;
     width: 100%;
     height: 100%;
 }
@@ -64,7 +68,8 @@ export default {
     filter: drop-shadow(15px 15px 15px #666666);
 }
 
-.ObjectName, .WhereName {
+.ObjectName,
+.WhereName {
     color: red;
 }
 
