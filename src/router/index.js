@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: import('../views/HideAndSeekView.vue')
+      component: () => import('../views/HideAndSeekView.vue')
     }
   ]
 })
