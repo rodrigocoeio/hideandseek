@@ -3,11 +3,11 @@ import store from "$/store";
 const listenKeyBoardEvents = function (e) {
   if (store.game.started) {
     // Present Places
-    if(store.game.presentPlaces){
+    if (store.game.presentPlaces) {
       switch (e.key) {
         // Quit Presentation
         case "Escape":
-          store.game.presentPlaces=false;
+          store.game.presentPlaces = false;
           break;
         // Previous Card
         case "ArrowLeft":
@@ -28,7 +28,7 @@ const listenKeyBoardEvents = function (e) {
 
     // Open Guess Where box on space
     if (e.keyCode == 32) {
-      if(!$("#guessWhere").is(":focus")) {
+      if (!$("#guessWhere").is(":focus")) {
         return $("#guessWhere").trigger("focus");
       }
     }
@@ -46,4 +46,7 @@ const listenKeyBoardEvents = function (e) {
   }
 };
 
-window.addEventListener("keydown", listenKeyBoardEvents);
+if (!window.keylistener) {
+  window.addEventListener("keydown", listenKeyBoardEvents);
+  window.keylistener = true;
+}

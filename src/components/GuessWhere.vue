@@ -2,8 +2,7 @@
     <img class="Object" :src="'/objects/' + object.image">
     <h1>Where is the <span class="ObjectName">{{ object.name }}</span> hidden ?</h1>
 
-    <select id="guessWhere" class="form form-select" v-model="guessTry" @change="guessWhere">
-        <option value="0">Guess Where?</option>
+    <select id="guessWhere" placeholder="Guess Where?" class="form form-select" v-model="guessTry" @change="guessWhere">
         <option v-for="card, index in cards" :value="card.name">{{ card.name }}</option>
     </select>
 

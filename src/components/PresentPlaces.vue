@@ -31,7 +31,7 @@ export default {
     },
 
     mounted() {
-        //store.game.presentIndex = 0;
+        store.game.presentIndex = 0;
         this.playCard();
     },
 
