@@ -30,6 +30,15 @@ export default {
     this.game.category = false;
   },
 
+  async loadCategories() {
+    try {
+      const categoriesJson = await fetch("/categories.json");
+      this.categories = await categoriesJson.json();
+    } catch (e) {
+      //console.error('Failed loading categories.json!');
+    }
+  },
+
   selectObject(object) {
     this.game.object = object;
     this.hideObject();
@@ -68,7 +77,7 @@ export default {
     card = card ? card : this.card;
 
     const audioFile = "/cards/" + card.parent + "/" + card.audio;
-    
+
     if (card.audio) {
       this.game.audio = playAudio(audioFile);
       this.game.audio.onended = function () {
