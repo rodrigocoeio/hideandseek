@@ -8,7 +8,8 @@
 
     <button class="NewGame btn btn-success" @click="newGame">Start New Game</button>
 
-    <div @click="playCard()" class="Congratulations" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
+    <div @click="playCard()" class="Congratulations"
+        :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
         <img class="ObjectImage" :src="'/objects/' + object.image">
     </div>
 </template>
@@ -84,5 +85,20 @@ h2 {
     -webkit-filter: drop-shadow(15px 15px 15px #666666);
     filter: drop-shadow(15px 15px 15px #666666);
     margin-bottom: 10px;
+}
+
+button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+button:not([disabled]):hover {
+    background-color: chartreuse;
+    text-shadow: white 3px 0 10px;
+    box-shadow: 3px 3px gray;
 }
 </style>

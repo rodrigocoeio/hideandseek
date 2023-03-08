@@ -33,7 +33,7 @@ export default {
 <style scoped>
 .ObjectsBox {
     max-width: 250px;
-    max-height: calc(100% - 100px);
+    max-height: calc(100% - 150px);
     margin: auto;
     text-align: center;
     overflow: auto;
@@ -47,7 +47,9 @@ export default {
 }
 
 .Object:hover {
-    background-color: aquamarine;
+    background-color: chartreuse;
+    text-shadow: white 3px 0 10px;
+    box-shadow: 3px 3px gray;
 }
 
 .Object img {

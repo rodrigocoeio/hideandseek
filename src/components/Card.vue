@@ -54,9 +54,9 @@ export default {
 
 .CardBox {
     width: calc(100% - 200px);
-    max-height: calc(100% - 100px);
-    height: 100%;
-    padding: 30x;
+    height: calc(100% - 100px);
+    border: 4px dashed black;
+    border-radius: 30px;
     margin: auto;
     overflow: hidden;
 }
@@ -68,8 +68,6 @@ export default {
 }
 
 .Card {
-    border: 4px dashed red;
-    padding: 30px;
     height: 100%;
 }
 

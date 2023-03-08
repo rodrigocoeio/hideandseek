@@ -1,12 +1,18 @@
 <template>
-    <img class="Object" :src="'/objects/' + object.image">
-    <h1>Where is the <span class="ObjectName">{{ object.name }}</span> hidden ?</h1>
+    <div class="GuessWhereBox">
+        <div class="GuessWhere">
+            <img class="Object" :src="'/objects/' + object.image">
+            <h1>Where is the <span class="ObjectName">{{ object.name }}</span> hidden ?</h1>
 
-    <select id="guessWhere" placeholder="Guess Where?" class="form form-select" v-model="guessTry" @change="guessWhere">
-        <option v-for="card, index in cards" :value="card.name">{{ card.name }}</option>
-    </select>
+            <select id="guessWhere" placeholder="Guess Where?" class="GuessWhereSelect" v-model="guessTry"
+                @change="guessWhere">
+                <option selected disabled value="">Pick a Place</option>
+                <option v-for="card, index in cards" :value="card.name">{{ card.name }}</option>
+            </select>
 
-    <button class="btn btn-primary" @click="presentPlaces()">Present Places</button>
+            <button class="btn btn-primary" @click="presentPlaces()">Present Places</button>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -45,8 +51,18 @@ export default {
 
 <style scoped>
 .GuessWhereBox {
-    overflow: auto;
-    max-height: calc(100% - 180px);
+    height: 100%;
+    margin-top: -30px;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    place-items: center;
+}
+
+h1 {
+    font-weight: 1000;
+    -webkit-text-stroke: 1px black;
+    text-shadow: gray 3px 1px 1px;
 }
 
 .ObjectName {
@@ -57,10 +73,31 @@ export default {
     height: 128px;
 }
 
-select {
-    max-width: 300px;
-    margin: auto;
-    margin-bottom: 15px;
+.GuessWhereSelect {
+    padding: 15px;
     font-size: 18px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.GuessWhereSelect:not([disabled]):hover {
+    background-color: chartreuse;
+    text-shadow: white 3px 0 10px;
+    box-shadow: 3px 3px gray;
+}
+
+button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+button:not([disabled]):hover {
+    background-color: chartreuse;
+    text-shadow: white 3px 0 10px;
+    box-shadow: 3px 3px gray;
 }
 </style>

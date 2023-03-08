@@ -92,4 +92,19 @@ h2 {
     filter: drop-shadow(15px 15px 15px #666666);
     margin-bottom: 10px;
 }
+
+button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+button:not([disabled]):hover {
+    background-color: chartreuse;
+    text-shadow: white 3px 0 10px;
+    box-shadow: 3px 3px gray;
+}
 </style>

@@ -24,9 +24,7 @@ export default {
 
   quitGame() {
     if (this.game.audio) this.stopAudio();
-
     this.game.started = false;
-    this.game.category = false;
   },
 
   async loadCategories() {

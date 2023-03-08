@@ -1,10 +1,11 @@
 <template>
     <div class="PresentationBox">
-        <button class="btn btn-primary" :disabled="presentIndex === 0" @click="previousCard">Previous</button>
-        {{ presentIndex+ 1 }} / {{ cardsNumber }}
-        <button class="btn btn-primary" :disabled="(presentIndex + 1) === cardsNumber" @click="nextCard">Next</button>
-        <button class="btn btn-danger" @click="quitPresentation">Quit Presentation</button>
-
+        <div class="Buttons">
+            <button class="btn btn-primary" :disabled="presentIndex === 0" @click="previousCard">Previous</button>
+            {{ presentIndex + 1 }} / {{ cardsNumber }}
+            <button class="btn btn-primary" :disabled="(presentIndex + 1) === cardsNumber" @click="nextCard">Next</button>
+            <button class="btn btn-danger" @click="quitPresentation">Quit Presentation</button>
+        </div>
         <h1 v-if="card" @click="playCard()">{{ card.name }}</h1>
         <div class="Place" v-if="card" @click="playCard()"
             :style="'background-image: url(\'/cards/' + card.parent + '/' + card.image + '\')'">
@@ -74,7 +75,29 @@ export default {
     height: 100%;
 }
 
+h1 {
+    text-shadow: gray 3px 1px 1px;
+    -webkit-text-stroke: 1px black;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.Buttons {
+    margin-top: 15px;
+}
+
 button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 15px;
+    cursor: pointer;
     margin-left: 15px;
+    vertical-align: middle;
+}
+
+button:not([disabled]):hover {
+    background-color: chartreuse;
+    text-shadow: white 3px 0 10px;
+    box-shadow: 3px 3px gray;
 }
 </style>
