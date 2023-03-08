@@ -4,7 +4,7 @@ import objects from "$/objects.js";
 export default {
   game: {
     started: false,
-    category: "all",
+    category: false,
     object: false,
     cardSorting: "shuffle",
     deck: [],
@@ -12,7 +12,8 @@ export default {
     presentPlaces: false,
     presentIndex: 0,
     guessed: false,
-    missed: false
+    missed: false,
+    pleaseSelectCategory: false
   },
 
   configs: {

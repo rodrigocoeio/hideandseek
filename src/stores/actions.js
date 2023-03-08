@@ -5,8 +5,7 @@ export default {
       !this.currentCategory.cards ||
       this.currentCategory.cards.length === 0
     ) {
-      alert("Choose a Category or Subcategory");
-      $("#categoryField").trigger("focus");
+      this.game.pleaseSelectCategory = true;
       return false;
     }
 
@@ -117,6 +116,7 @@ export default {
   },
 
   selectCategory(category) {
+    this.game.pleaseSelectCategory = false;
     this.game.category = category;
   },
 };
