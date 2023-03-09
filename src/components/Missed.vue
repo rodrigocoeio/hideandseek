@@ -9,11 +9,10 @@
         <button class="TryAgain btn btn-success" @click="tryAgain">TryAgain</button>
 
 
-        <div @click="playCard()" class="Missed" :style="'background-image: url(\'/cards/' + where.parent + '/' + where.image + '\')'">
-            <!-- <img class="ObjectImage" :src="'/objects/' + object.image"> -->
+        <div @click="playCard()" class="Missed">
+            <img :src="cardImage" />
         </div>
     </div>
-
 </template>
 
 <script>
@@ -23,6 +22,11 @@ export default {
     computed: {
         object() {
             return store.game.object;
+        },
+
+        cardImage() {
+            if (this.where)
+                return "/cards/" + this.where.parent + "/" + this.where.image;
         },
 
         where() {
@@ -57,15 +61,16 @@ export default {
 }
 
 .Missed {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    -webkit-text-stroke: 1px white;
-    /* width and color */
-    font-weight: bold;
     cursor: pointer;
     width: 100%;
+    height: calc(100% - 150px);
+}
+
+.Missed img {
     height: 100%;
+    border: 3px dotted black;
+    border-radius: 30px;
+    box-shadow: 5px 5px gray;
 }
 
 .ObjectImage {

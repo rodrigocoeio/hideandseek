@@ -74,8 +74,10 @@ h1 {
 }
 
 .GuessWhereSelect {
-    padding: 15px;
-    font-size: 18px;
+    position: relative;
+    top: 4px;
+    padding: 12px;
+    font-size: 24px;
     border-radius: 15px;
     cursor: pointer;
 }
@@ -87,8 +89,8 @@ h1 {
 }
 
 button {
-    padding: 8px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 24px;
     border-radius: 15px;
     cursor: pointer;
     margin-left: 15px;

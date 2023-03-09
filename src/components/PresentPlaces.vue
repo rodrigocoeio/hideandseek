@@ -7,8 +7,8 @@
             <button class="btn btn-danger" @click="quitPresentation">Quit Presentation</button>
         </div>
         <h1 v-if="card" @click="playCard()">{{ card.name }}</h1>
-        <div class="Place" v-if="card" @click="playCard()"
-            :style="'background-image: url(\'/cards/' + card.parent + '/' + card.image + '\')'">
+        <div class="Place" v-if="card" @click="playCard()">
+            <img :src="cardImage" />
         </div>
     </div>
 </template>
@@ -24,6 +24,10 @@ export default {
             const card = store.cards[this.presentIndex] ? store.cards[this.presentIndex] : false;
 
             return card;
+        },
+        cardImage() {
+            if (this.card)
+                return "/cards/" + this.card.parent + "/" + this.card.image;
         },
 
         cardsNumber() {
@@ -64,15 +68,14 @@ export default {
 }
 
 .Place {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    -webkit-text-stroke: 1px white;
-    /* width and color */
-    font-weight: bold;
+    height: calc(100% - 70px);
+}
 
-    width: 100%;
-    height: 100%;
+.Place img {
+    border: 3px dotted black;
+    border-radius: 30px;
+    height: calc(100% - 70px);
+    box-shadow: 5px 5px gray;
 }
 
 h1 {
@@ -83,12 +86,13 @@ h1 {
 }
 
 .Buttons {
+    font-size: 24px;
     margin-top: 15px;
 }
 
 button {
     padding: 8px;
-    font-size: 14px;
+    font-size: 24px;
     border-radius: 15px;
     cursor: pointer;
     margin-left: 15px;

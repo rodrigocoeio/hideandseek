@@ -6,7 +6,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Category Name -->
                     <li class="nav-item CategoryName" :title="categoryName">
-                        <img src="/images/hideandseek-logo.png" width="36" />
+                        <img src="/images/hideandseek.png" width="36" />
                         {{ categoryName }}
                     </li>
                 </ul>
@@ -21,7 +21,7 @@
                     <!-- Quit Game -->
                     <li class="nav-item">
                         <button class="QuitGameButton" @click="quitGame">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-x-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path
@@ -40,12 +40,6 @@
 import store from "$/store";
 
 export default {
-    data() {
-        return {
-            configs: store.configs
-        }
-    },
-
     computed: {
         game() {
             return store.game;
@@ -125,13 +119,15 @@ nav * {
     display: inline-block;
 }
 
-ul {
+nav ul {
+    margin: 0px;
+    margin-bottom: 15px;
     list-style: none;
 }
 
 button {
     padding: 8px;
-    font-size: 14px;
+    font-size: 24px;
     border-radius: 15px;
     cursor: pointer;
     margin-left: 15px;
@@ -161,9 +157,12 @@ button:not([disabled]):hover {
     font-size: 24px;
     font-weight: bolder;
     padding-right: 15px;
-    width: 300px;
-    height: 30px;
-    overflow: hidden;
+    text-shadow: gray 3px 1px 1px;
+}
+
+.CategoryName img {
+    position: relative;
+    top: 10px;
 }
 
 .CardIndex {
