@@ -20,4 +20,7 @@ export default defineConfig({
       $: fileURLToPath(new URL("./src/stores", import.meta.url)), // Stores
     },
   },
+  build: {
+    reportCompressedSize: false,
+  },
 });
