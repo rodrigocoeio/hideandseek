@@ -1,4 +1,3 @@
-import categories from "$/categories.js";
 import objects from "$/objects.js";
 
 export default {
@@ -20,6 +19,6 @@ export default {
     sound: true
   },
   
-  categories,
+  categories: [],
   objects
 };

@@ -20,7 +20,8 @@ const capitalizeFirstLetter = function (string) {
 
 const formatCardName = function (cardName) {
   const fileNameSplited = cardName.split("-");
-  cardName = fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
+  cardName =
+    fileNameSplited.length > 1 ? fileNameSplited.pop() : fileNameSplited[0];
 
   cardName = cardName.trim();
   cardName = cardName.replace(/(\r\n|\n|\r)/gm, "");
@@ -74,6 +75,11 @@ const readFolder = async function (folder, parent) {
 };
 
 const readCategories = async function (folder, callback) {
+  if (!fs.existsSync(folder)) {
+    console.log(folder + " doesn't exists!");
+    return false;
+  }
+
   const contents = await readFolder(folder);
 
   const categoriesCards = readContents(contents);
@@ -84,10 +90,10 @@ const readObjects = async function (folder, callback) {
   const contents = await readFolder(folder);
   const objects = [];
 
-  contents.forEach(content => {
+  contents.forEach((content) => {
     const object = getObject(content);
     objects.push(object);
-  })
+  });
 
   callback(objects);
 };
@@ -95,8 +101,8 @@ const readObjects = async function (folder, callback) {
 const getObject = (content) => {
   return {
     name: formatCardName(content.name),
-    image: content.fileName
-  }
+    image: content.fileName,
+  };
 };
 
 const readContents = (contents, parent) => {
@@ -163,12 +169,14 @@ const getCard = (content, parent) => {
         ? "cover"
         : "card";
     const cardImage = content.fileName;
-    const cardAudio = findCardFile(content.name, parent, "mp3") || findCardFile(content.name, parent, "mpeg");
+    const cardAudio =
+      findCardFile(content.name, parent, "mp3") ||
+      findCardFile(content.name, parent, "mpeg");
 
     return {
       type: cardType,
       name: cardName,
-      category: parent ? parent.name : '',
+      category: parent ? parent.name : "",
       parent: content.parent,
       image: cardImage,
       audio: cardAudio,
@@ -190,8 +198,8 @@ const findCardFile = (name, parent, extension) => {
   return file.fileName;
 };
 
-const categoriesFolder = "./public/cards";
-const categoriesJsonPath = "./src/stores/categories.json";
+const categoriesFolder = process.argv[2] ? process.argv[2] : "./cards";
+const categoriesJsonPath = categoriesFolder + "/categories.json";
 
 console.log("reading categories and cards...");
 
