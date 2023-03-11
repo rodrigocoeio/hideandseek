@@ -87,7 +87,6 @@ export default {
 
 h1,
 h2 {
-    background-color: white;
     font-size: 20px;
 }
 

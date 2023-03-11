@@ -67,7 +67,7 @@ h1 {
   font-size: 48px;
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: black;
+  color: white;
 }
 
 select {
