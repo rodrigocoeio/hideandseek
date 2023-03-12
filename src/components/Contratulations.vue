@@ -1,8 +1,7 @@
 <template>
     <div class="CongratulationsBox">
-        <h1>Contratulations!
-            You've founded the <span class="ObjectName">{{ object.name }}</span>!</h1>
-        <h1>It was hidden <span class="WhereName">{{ where.name }}</span>!</h1>
+        <h1>Contratulations!!!
+            You've founded it!!!</h1>
     </div>
 
 
