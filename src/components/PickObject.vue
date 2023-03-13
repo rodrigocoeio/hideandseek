@@ -32,11 +32,13 @@ export default {
 
 <style scoped>
 .ObjectsBox {
-    max-width: 250px;
     max-height: calc(100% - 150px);
     margin: auto;
     text-align: center;
     overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
 }
 
 .Object {
