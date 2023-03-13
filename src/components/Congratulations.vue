@@ -1,7 +1,7 @@
 <template>
     <div class="CongratulationsBox">
-        <h1>Contratulations!!!
-            You've founded it!!!</h1>
+        <h1>Congratulations!
+            You've found it!</h1>
     </div>
 
 

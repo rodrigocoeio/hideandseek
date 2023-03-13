@@ -4,7 +4,7 @@
             <pick-object v-if="!object"></pick-object>
             <guess-where v-if="object && !guessed && !missed && !presentPlaces"></guess-where>
             <present-places v-if="object && presentPlaces"></present-places>
-            <contratulations v-if="object && guessed"></contratulations>
+            <congratulations v-if="object && guessed"></congratulations>
             <missed v-if="object && missed"></missed>
         </div>
     </div>
@@ -14,7 +14,7 @@
 import store from "$/store.js";
 import PickObject from "./PickObject.vue";
 import GuessWhere from "./GuessWhere.vue";
-import Contratulations from "./Contratulations.vue";
+import Congratulations from "./Congratulations.vue";
 import Missed from "./Missed.vue";
 import PresentPlaces from "./PresentPlaces.vue";
 
@@ -40,7 +40,7 @@ export default {
     components: {
         PickObject,
         GuessWhere,
-        Contratulations,
+        Congratulations,
         Missed,
         PresentPlaces
     }
